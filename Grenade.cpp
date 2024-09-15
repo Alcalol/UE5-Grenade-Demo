@@ -11,7 +11,6 @@
 #include "NiagaraFunctionLibrary.h" 
 #include "PhysicsEngine/RadialForceComponent.h"
 
-// Sets default values
 AGrenade::AGrenade()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
