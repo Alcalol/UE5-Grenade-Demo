@@ -1,7 +1,7 @@
 # Unreal Engine 5 Grenade Demo
 
 ## Video of this grenade class in action: 
-### [YouTube Video](https://www.youtube.com/watch?v=fEDDmg47Mr0){:target="_blank"}
+### [YouTube Video](https://www.youtube.com/watch?v=fEDDmg47Mr0)
 
 ## Description:
 This Unreal Engine 5 demo showcases an implementation of a grenade class.  This class includes the following features:
