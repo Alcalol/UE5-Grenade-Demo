@@ -5,6 +5,16 @@
 #include "GameFramework/Actor.h"
 #include "Grenade.generated.h"
 
+class ACharacter;
+class UPrimitiveComponent;
+class UCapsuleComponent;
+class USkeletalMeshComponent;
+class UAudioComponent;
+class URadialForceComponent;
+class UNiagaraSystem;
+class USoundCue;
+class UMaterialInstance;
+
 UCLASS()
 class GRENADEDEMO_API AGrenade : public AActor
 {
@@ -14,7 +24,7 @@ public:
 	AGrenade();
 
 	UFUNCTION(BlueprintCallable)
-	void PullPin(class ACharacter* OwnerCharacter, bool PlayPinAudio);
+	void PullPin(ACharacter* OwnerCharacter, bool PlayPinAudio);
 
 	UFUNCTION(BlueprintCallable)
 	void PopLever();
@@ -35,7 +45,7 @@ protected:
 	float GetFuseTimeRemaining();
 
 	UFUNCTION(BlueprintCallable)
-	class ACharacter* GetOwnerCharacter();
+	ACharacter* GetOwnerCharacter();
 
 	UFUNCTION(BlueprintCallable)
 	void OnGrenadeHitObject(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
@@ -46,16 +56,16 @@ private:
 	/***** Variables that are exposed to blueprints subclasses to configure grenade behaviour *****/
 
 	UPROPERTY(EditDefaultsOnly)
-	class UCapsuleComponent* CapsuleComponent;
+	UCapsuleComponent* CapsuleComponent;
 
 	UPROPERTY(EditDefaultsOnly)
-	class USkeletalMeshComponent* GrenadeMeshComponent;
+	USkeletalMeshComponent* GrenadeMeshComponent;
 
 	UPROPERTY(EditDefaultsOnly)
-	class UAudioComponent* GrenadeAudioComponent;
+	UAudioComponent* GrenadeAudioComponent;
 
 	UPROPERTY(EditDefaultsOnly)
-	class URadialForceComponent* RadialForceComponent;
+	URadialForceComponent* RadialForceComponent;
 
 	// Multiplier applied to the force of the grenade on release
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
@@ -87,27 +97,27 @@ private:
 
 	// The Niagara explosion effect to play on detonation, set to None for no effect
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class UNiagaraSystem* ExplosionEffect;
+	UNiagaraSystem* ExplosionEffect;
 
 	// The sound cue to use when the pin is pulled
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class USoundCue* PinPullSound;
+	USoundCue* PinPullSound;
 
 	// The sound cue to use when the lever is popped
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class USoundCue* LeverPopSound;
+	USoundCue* LeverPopSound;
 
 	// The sound cue to use when the grenade bounces
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class USoundCue* BounceSound;
+	USoundCue* BounceSound;
 
 	// The sound cue to use when the explosion occurs
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class USoundCue* ExplosionSound;
+	USoundCue* ExplosionSound;
 
 	// The damage decal to leave on the floor where the explosion occurs
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class UMaterialInstance* ExplosionDecal;
+	UMaterialInstance* ExplosionDecal;
 
 	// The size of the explosion damage decal to leave
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
@@ -115,7 +125,7 @@ private:
 
 	// The Niagara trail effect to use, set to none for no trail
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
-	class UNiagaraSystem* TrailEffect;
+	UNiagaraSystem* TrailEffect;
 
 	// Should the explosion generate child grenade(s) that go in random directions?
 	UPROPERTY(EditDefaultsOnly, Category = "Grenade Settings")
@@ -140,7 +150,7 @@ private:
 #pragma endregion GrenadeSettings
 
 	UPROPERTY()
-	class ACharacter* GrenadeOwner;
+	ACharacter* GrenadeOwner;
 
 	UPROPERTY()
 	AActor* LastActorHit;
@@ -165,7 +175,7 @@ private:
 
 	void DrawExplosionDecal(FVector& StartPoint);
 
-	void PlaySound(class USoundCue* SoundCue);
+	void PlaySound(USoundCue* SoundCue);
 
 	float GenerateRandomAttitudeValue();
 
