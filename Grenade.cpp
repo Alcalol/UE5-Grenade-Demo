@@ -81,13 +81,13 @@ void AGrenade::ReleaseGrenade(FVector& AimDirection)
 	if (TrailEffect)
 	{
 		UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, 
-													 GrenadeMeshComponent, 
-													 NAME_None, 
-													 FVector::ZeroVector, 
-													 FRotator::ZeroRotator, 
-													 EAttachLocation::SnapToTargetIncludingScale, 
-													 true, 
-													 true);
+							     GrenadeMeshComponent, 
+							     NAME_None, 
+							     FVector::ZeroVector, 
+							     FRotator::ZeroRotator, 
+							     EAttachLocation::SnapToTargetIncludingScale, 
+							     true, 
+							     true);
 	}
 }
 
@@ -195,17 +195,17 @@ void AGrenade::PerformRadialDamage(FVector& Origin)
 	ActorsToIgnore.Init(this, 1);
 
 	UGameplayStatics::ApplyRadialDamageWithFalloff(GetWorld(), 
-												   MaximumDamage, 
-												   MinimumDamage, 
-												   Origin, 
-												   DamageInnerRadius, 
-												   DamageOuterRadius, 
-												   1.0f, 
-												   UDamageType::StaticClass(), 
-												   ActorsToIgnore, 
-												   this, 
-												   GrenadeOwner->Controller, 
-												   ECollisionChannel::ECC_Visibility);
+						       MaximumDamage, 
+						       MinimumDamage, 
+						       Origin, 
+						       DamageInnerRadius, 
+						       DamageOuterRadius, 
+						       1.0f, 
+						       UDamageType::StaticClass(), 
+						       ActorsToIgnore, 
+						       this, 
+						       GrenadeOwner->Controller, 
+						       ECollisionChannel::ECC_Visibility);
 }
 
 void AGrenade::DrawExplosionDecal(FVector& StartPoint)
@@ -229,11 +229,11 @@ void AGrenade::DrawExplosionDecal(FVector& StartPoint)
 		if (HitResult.bBlockingHit)
 		{
 			UGameplayStatics::SpawnDecalAtLocation(GetWorld(), 
-												   ExplosionDecal, 
-												   ExplosionDecalSize, 
-												   HitResult.ImpactPoint, 
-												   DecalRotation, 
-												   10.0f);
+							       ExplosionDecal, 
+							       ExplosionDecalSize, 
+							       HitResult.ImpactPoint, 
+							       DecalRotation, 
+							       10.0f);
 		}
 	}
 }
@@ -261,15 +261,15 @@ void AGrenade::SpawnChildGrenades()
 			// Generate random orientation for child grenades to spawn in
 			const FVector SpawnLocation = GetActorLocation();
 			const FRotator SpawnRotation = FRotator(FMath::FRandRange(0.0, 359.9),
-												    FMath::FRandRange(0.0, 359.9),
-													FMath::FRandRange(0.0, 359.9));
+								FMath::FRandRange(0.0, 359.9),
+								FMath::FRandRange(0.0, 359.9));
 			const FActorSpawnParameters SpawnParams;
 
 			AGrenade* NewChildGrenade = GetWorld()->SpawnActor<AGrenade>(AChildGrenadeType, SpawnLocation, SpawnRotation, SpawnParams);
 
 			FRotator ChildLaunchDirection = FRotator(GenerateRandomAttitudeValue(),
-													 FMath::FRandRange(0, 359.0f),
-													 GenerateRandomAttitudeValue());
+								 FMath::FRandRange(0, 359.0f),
+								 GenerateRandomAttitudeValue());
 
 			if (NewChildGrenade)
 			{
